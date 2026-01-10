@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>混合计算程序 - 使用说明书</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        h2 {
+            color: #3498db;
+            margin: 25px 0 15px;
+            font-size: 1.4em;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin: 20px 0 10px;
+            font-size: 1.2em;
+        }
+
+        p {
+            margin: 10px 0;
+            text-indent: 2em;
+        }
+
+        ul, ol {
+            margin: 10px 0 10px 40px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .highlight {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: "Consolas", "Monaco", monospace;
+            color: #2c3e50;
+        }
+
+        .notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>混合计算程序 - 完整使用说明书</h1>
+
+        <h2>一、程序概述</h2>
+        <p>本程序是一款基于C语言开发的控制台混合运算工具，支持加法、减法、乘法、除法四种基本运算，具备运算次数统计、历史记录保存、历史记录查看、历史记录清空等核心功能。程序会自动将每次有效运算的「次数、运算符、操作数、结果」保存至本地文件，方便用户后续追溯运算过程。</p>
+
+        <h2>二、核心功能</h2>
+        <ul>
+            <li>「混合计算」：支持连续进行加减乘除运算，首次运算仅支持加减，后续运算支持全部四种运算符。</li>
+            <li>「历史记录查看」：读取本地保存的运算文件，展示所有历史运算详情，包含运算次数和结果。</li>
+            <li>「历史记录删除」：清空本地运算记录文件，删除所有历史数据。</li>
+            <li>「运算次数统计」：自动统计有效运算的次数，每次运算后同步保存至文件。</li>
+        </ul>
+
+        <h2>三、运行环境要求</h2>
+        <ul>
+            <li>操作系统：Windows 7/10/11（兼容32位/64位）。</li>
+            <li>编译环境：Dev-C++、Code::Blocks、Visual Studio 2019及以上版本。</li>
+            <li>依赖：无需额外安装第三方库，依赖C语言标准库（stdio.h、stdlib.h）。</li>
+        </ul>
+
+        <h2>四、操作步骤详解</h2>
+        <h3>步骤1：程序启动</h3>
+        <p>将编译后的可执行文件（.exe）放置在任意目录下，双击运行程序，控制台会弹出功能选择菜单，如下所示：</p>
+        <div class="highlight">
+======================================================<br>
+请选择项目：<br>
+0:退出   1:混合计算   2:查看历史记录   3:删除记录<br>
+======================================================
+        </div>
+
+        <h3>步骤2：混合计算操作（选择「1」）</h3>
+        <ol>
+            <li>在菜单中输入「1」并回车，进入混合计算模式。</li>
+            <li>首次运算提示「选择+或-」，输入有效运算符（+/-）并回车。</li>
+            <li>根据提示输入参与运算的数字（支持整数和小数），回车后程序会展示本次运算后的累计结果，并自动保存记录。</li>
+            <li>后续运算提示「选择+或-或*或/」，输入有效运算符（+/-/*/）并回车，重复步骤3完成运算。</li>
+            <li>如需退出计算模式，输入「q」或「Q」并回车，程序会展示最终累计结果并返回主菜单。</li>
+        </ol>
+        <div class="notice">
+            注意：1. 除法运算中，除数不能为0，否则程序会提示错误并跳过本次运算；2. 输入数字时请确保格式正确，避免输入非数字字符导致程序异常。
+        </div>
+
+        <h3>步骤3：查看历史记录（选择「2」）</h3>
+        <ol>
+            <li>在主菜单中输入「2」并回车，程序会读取本地「calculate_data.txt」文件。</li>
+            <li>控制台会格式化展示所有历史运算记录，包含「运算次数、运算符、操作数、累计结果」。</li>
+            <li>查看完成后，按下任意键即可清屏并返回主菜单。</li>
+        </ol>
+        <div class="notice">
+            注意：如果没有任何历史运算记录，程序会提示文件打开失败，这是正常现象，进行一次有效运算后即可生成「calculate_data.txt」文件。
+        </div>
+
+        <h3>步骤4：删除历史记录（选择「3」）</h3>
+        <ol>
+            <li>在主菜单中输入「3」并回车，程序会清空「calculate_data.txt」文件中的所有内容。</li>
+            <li>控制台提示「历史记录已清空」，按下任意键清屏并返回主菜单。</li>
+        </ol>
+
+        <h3>步骤5：退出程序（选择「0」）</h3>
+        <p>在主菜单中输入「0」并回车，程序会正常退出，所有已完成的运算记录已保存在「calculate_data.txt」文件中（未删除情况下），下次运行程序可正常查看。</p>
+
+        <h2>五、文件说明</h2>
+        <ul>
+            <li>程序可执行文件：编译后生成的.exe文件，双击即可运行。</li>
+            <li>运算记录文件：「calculate_data.txt」，程序运行后自动生成，存储所有历史运算记录，采用纯文本格式，可直接用记事本打开查看。</li>
+        </ul>
+
+        <h2>六、常见问题排查</h2>
+        <h3>问题1：输入运算符后，程序提示「请重新输入」</h3>
+        <p>排查方案：确认输入的运算符是否为有效运算符，首次运算仅支持「+」和「-」，后续运算支持「+」「-」「*」「/」，避免输入空格、字母（q/Q除外）、符号等无效内容。</p>
+
+        <h3>问题2：查看历史记录时，无任何内容展示</h3>
+        <p>排查方案：1. 确认是否完成过有效运算（除法运算除数为0时不算有效运算）；2. 确认「calculate_data.txt」文件是否存在且有内容；3. 确认文件未被其他程序占用。</p>
+
+        <h3>问题3：除法运算输入数字后，无结果展示且提示错误</h3>
+        <p>排查方案：这是因为输入的除数为0，C语言中除数不能为0，重新输入非0数字即可正常进行除法运算。</p>
+
+        <div class="footer">
+            混合计算程序使用说明书 | 版本：V1.0 | 制作日期：2026年01月
+        </div>
+    </div>
+</body>
+</html>
