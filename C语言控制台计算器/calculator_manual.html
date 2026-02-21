@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C语言计算器 - 使用说明书</title>
+    <style>
+        /* 全局样式：简洁清爽，适配不同屏幕 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin: 25px 0 15px;
+        }
+        h3 {
+            color: #2980b9;
+            margin: 20px 0 10px;
+        }
+        p, li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        .feature-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #ccc;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: "Consolas", monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>C语言控制台计算器 - 使用说明书</h1>
+
+        <h2>一、项目概述</h2>
+        <p>本项目是基于 C 语言开发的控制台计算器，具备累计计算、单次表达式计算、历史记录存储等核心功能，代码模块化设计，具备完善的异常处理机制，适合编程入门学习与练手。</p>
+
+        <h2>二、核心功能</h2>
+        <div class="feature-list">
+            <ul>
+                <li>✅ <strong>累计计算模式</strong>：支持连续的加减乘除运算（如 0 + 5 - 2 * 3）</li>
+                <li>✅ <strong>单次表达式计算</strong>：直接输入完整表达式计算（如 8*9、10/2）</li>
+                <li>✅ <strong>历史记录管理</strong>：自动保存运算记录到本地文件，支持查看/清空</li>
+                <li>✅ <strong>异常处理</strong>：除数为0、非法输入、文件操作失败等场景容错</li>
+                <li>✅ <strong>跨平台兼容</strong>：支持 Windows/Linux/macOS 系统清屏操作</li>
+            </ul>
+        </div>
+
+        <h2>三、运行环境</h2>
+        <ul>
+            <li>编译器：GCC / MinGW / MSVC（VS）/ Clion 等 C 语言编译器</li>
+            <li>系统：Windows / Linux / macOS</li>
+            <li>依赖：无第三方库，仅使用 C 标准库（stdio.h / stdlib.h）</li>
+        </ul>
+
+        <h2>四、使用教程</h2>
+        <h3>4.1 编译运行</h3>
+        <p>方式1（命令行）：</p>
+        <div class="code-block">
+// 编译
+gcc calculator.c -o calculator
+// 运行（Windows）
+calculator.exe
+// 运行（Linux/macOS）
+./calculator
+        </div>
+        <p>方式2：直接用 VS/Clion 打开源码，点击「运行」按钮。</p>
+
+        <h3>4.2 操作流程</h3>
+        <ol>
+            <li>运行程序后，显示主菜单，输入数字选择功能：
+                <ul>
+                    <li>1：进入累计计算模式</li>
+                    <li>2：进入单次表达式计算模式</li>
+                    <li>3：查看所有运算历史记录</li>
+                    <li>4：清空本地历史记录文件</li>
+                    <li>0：退出程序</li>
+                </ul>
+            </li>
+            <li>累计计算模式：
+                <ul>
+                    <li>初始结果为 0，输入运算符（+ - * /）后按提示输入数字</li>
+                    <li>连续运算，输入 <span class="highlight">q/Q</span> 退出并显示最终结果</li>
+                </ul>
+            </li>
+            <li>单次计算模式：
+                <ul>
+                    <li>直接输入完整表达式（如 5+6、10/2），按回车自动计算</li>
+                    <li>支持 + - * / 四种运算符，自动判断除数为0异常</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>五、文件说明</h2>
+        <ul>
+            <li><strong>calculator.c</strong>：主程序源码文件，包含所有功能实现</li>
+            <li><strong>calculate_data.txt</strong>：运行后自动生成的历史记录文件，格式为「运算次数 运算符 操作数 结果」</li>
+            <li><strong>README.md</strong>：项目说明文档（Markdown 版）</li>
+            <li><strong>calculator_manual.html</strong>：本使用说明书（HTML 版）</li>
+        </ul>
+
+        <h2>六、异常处理说明</h2>
+        <ul>
+            <li>除数为0：弹出错误提示，不执行运算</li>
+            <li>非法运算符：提示输入无效，重新等待输入</li>
+            <li>文件操作失败：通过 perror 打印错误信息，不影响核心运算</li>
+            <li>非法菜单输入：过滤非数字输入，重新显示菜单</li>
+        </ul>
+
+        <h2>七、代码设计亮点</h2>
+        <ul>
+            <li>模块化：按功能拆分函数（运算/文件/交互/菜单），职责单一</li>
+            <li>命名规范：函数名见名知意（如 subtract/multiply/divide），避免关键字冲突</li>
+            <li>性能优化：统一文件写入逻辑，避免频繁打开/关闭文件</li>
+            <li>用户体验：输入缓冲区清空、跨平台清屏、友好的提示信息</li>
+        </ul>
+
+        <div class="footer">
+            <p>C语言计算器 v2.0</p>
+        </div>
+    </div>
+</body>
+</html>
