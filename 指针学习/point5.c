@@ -20,7 +20,7 @@ int main(){
     char c[] = "World";
     char *point_str[] = {a,b,c};
     printf("%s\n",point_str);//得到非常奇怪的字符串，也许是地址？
-    printf("%p\n",point_str);//确实是地址 
+    printf("%p\n",point_str);//确实是地址，但为什么这个地址只能转化出这种乱码的字符串？
     //解引用看看
     printf("%s\n",*point_str);//获得了Hello,刚好就是a字符串
     //那我们再次对Hello进行解引用，是不是就会获得第一个字符H？
